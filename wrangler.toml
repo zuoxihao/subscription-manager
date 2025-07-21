@@ -1,0 +1,24 @@
+name = "subscription-manager"
+main = "index.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "subscription-manager"
+
+[env.staging]
+name = "subscription-manager-staging"
+
+# KV 命名空间配置
+[[kv_namespaces]]
+binding = "SUBSCRIPTIONS_KV"
+preview_id = "your-preview-kv-namespace-id"
+id = "6d2d21616ddf4ae4a53c01a8d9b7e176"
+
+# 定时任务配置 - 每天早上8点检查
+[triggers]
+crons = ["0 8 * * *"]
+
+# 环境变量（可选，也可以在 Cloudflare Dashboard 中设置）
+[vars]
+ENVIRONMENT = "production"
